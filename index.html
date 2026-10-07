@@ -253,14 +253,18 @@ body{
 .add-choice{border-color:#2e9d62}.replace-choice{border-color:#e49b2f}
 @media(max-width:760px){.library-tools{width:100%}.library-tools .btn{flex:1}}
 
-</style>
+.featured-section{margin-bottom:34px}.featured-heading{margin-bottom:17px}.featured-heading h1{font-size:38px;line-height:1;margin:0 0 7px;color:#573317;text-shadow:0 3px #fff}.featured-heading p{margin:0;color:#5f4a37;font-weight:700}.featured-card{background:linear-gradient(135deg,#fff8d8,#fffdf5)!important;border:5px solid #e4a62d!important;box-shadow:0 8px 0 #a66a1e!important}.featured-badge{display:inline-block;background:#ffcf3e;color:#573317;border:2px solid #8c5b2f;border-radius:12px;padding:5px 9px;font-size:12px;font-weight:1000;margin-bottom:9px}.my-games-head{padding-top:22px;border-top:3px dashed rgba(111,70,31,.3)}</style>
 </head>
 <body>
 <section id="library">
   <div class="top"><div class="brand">🪢 TUG OF WAR <span>English Challenge</span></div><button class="btn" onclick="newGame()">+ CREATE GAME</button></div>
   <main class="wrap">
-    <div class="hero">
-      <div><h1>My games</h1><p>Two teams. Two questions. Each team plays at its own pace.</p></div>
+    <div class="featured-section">
+      <div class="featured-heading"><div><h1>⭐ Featured games</h1><p>Ready-to-play games included with Tug of War.</p></div></div>
+      <div id="featuredGames"></div>
+    </div>
+    <div class="hero my-games-head">
+      <div><h1>My games</h1><p>Create, import and keep your own classroom games.</p></div>
       <div class="library-tools">
         <button class="btn secondary" onclick="document.getElementById('importFile').click()">📥 IMPORT GAMES</button>
         <button class="btn secondary" onclick="exportAllGames()">📤 EXPORT ALL</button>
@@ -269,7 +273,7 @@ body{
     </div>
     <div class="game-search">
       <span class="search-icon">🔎</span>
-      <input id="gameSearch" type="search" placeholder="Search games by title..." autocomplete="off" oninput="renderGames()">
+      <input id="gameSearch" type="search" placeholder="Search games by title..." autocomplete="off" oninput="renderAllGames()">
       <button class="clear-search" type="button" onclick="clearGameSearch()" aria-label="Clear search">✕</button>
     </div>
     <div id="games"></div>
@@ -351,6 +355,39 @@ body{
 
 <script>
 const KEY='tugofwar_english_games_v1';
+const featuredGames=[{title:"Present Simple vs Present Continuous – 5th & 6th",win:5,questions:[
+["The firefighter usually ___ people in emergencies.",["rescue","rescues","is rescuing","rescuing"],1],
+["Look! The firefighter ___ a cat from the building.",["rescues","rescue","is rescuing","are rescuing"],2],
+["My sister ___ to be a fashion designer.",["want","wants","is wanting","wanting"],1],
+["Listen! The singer ___ my favourite song.",["sings","sing","is singing","singing"],2],
+["Journalists usually ___ about important events.",["writes","are writing","write","is writing"],2],
+["The mechanic can’t talk now. He ___ a car.",["repairs","repair","is repairing","are repairing"],2],
+["I usually ___ hockey on Saturdays.",["play","am playing","plays","playing"],0],
+["We ___ chess at the moment.",["play","plays","is playing","are playing"],3],
+["Marta often ___ hiking with her family.",["go","goes","is going","going"],1],
+["Be quiet! Leo ___ a picture of that bird.",["takes","take","is taking","are taking"],2],
+["My friends ___ to the cinema every Friday.",["go","goes","are going","is going"],0],
+["Today we ___ volleyball at the sports centre.",["play","plays","are playing","is playing"],2],
+["I usually ___ breakfast before I go to school.",["have","am having","has","having"],0],
+["We can’t use the gym now because Year 5 ___ P.E. there.",["has","have","is having","are having"],3],
+["Our teacher usually ___ the lesson at nine o’clock.",["start","starts","is starting","starting"],1],
+["Look at the playground! The children ___ in the rain.",["dance","dances","are dancing","is dancing"],2],
+["Emma always ___ her homework after school.",["do","does","is doing","doing"],1],
+["Don’t disturb Alex. He ___ his homework right now.",["does","do","is doing","are doing"],2],
+["We normally ___ lunch in the school canteen.",["have","has","are having","having"],0],
+["Where is the teacher? She ___ with a family in the staff room.",["talks","talk","is talking","are talking"],2],
+["My grandfather ___ glasses every day.",["wear","wears","is wearing","wearing"],1],
+["In this photo, the climber ___ a red helmet.",["wears","wear","is wearing","are wearing"],2],
+["Scientists usually ___ new ideas and discoveries.",["study","studies","are studying","is studying"],0],
+["The scientist ___ the results in the laboratory at the moment.",["checks","check","is checking","are checking"],2],
+["Our class often ___ about famous inventors.",["learn","learns","is learning","learning"],1],
+["This week we ___ about an important scientist.",["learn","learns","are learning","is learning"],2],
+["Tom is a very active boy. He ___ every morning.",["jog","jogs","is jogging","jogging"],1],
+["Look outside! Tom ___ in the park now.",["jogs","jog","is jogging","are jogging"],2],
+["Why ___ you ___ goggles today?",["do / wear","are / wearing","does / wear","is / wearing"],1],
+["How often ___ your sister ___ swimming?",["is / going","do / go","does / go","does / going"],2]
+].map(q=>({text:q[0],options:q[1],correct:q[2]}))},{"title":"Inside Sant Josep – Unit 1 · 6th","win":5,"questions":[{"text":"Which subject do you usually study numbers in?","options":["History","Maths","P.E.","Geography"],"correct":1},{"text":"Where can you usually find lots of books at school?","options":["Library","Gym","Laboratory","Playground"],"correct":0},{"text":"We do experiments in the ___.","options":["canteen","laboratory","schoolyard","staff room"],"correct":1},{"text":"Which place is best for swimming lessons?","options":["Gym","Classroom","Swimming pool","Library"],"correct":2},{"text":"You usually eat lunch in the ___.","options":["canteen","bookshelf","entrance","laboratory"],"correct":0},{"text":"Who is a student in your class?","options":["Headteacher","Classmate","Teacher","Director"],"correct":1},{"text":"You can put books on a ___.","options":["desk","bookshelf","timetable","corridor"],"correct":1},{"text":"What do you wear to protect your eyes when you swim?","options":["Goggles","Glasses","Trainers","Helmet"],"correct":0},{"text":"Where do teachers usually work when they are not teaching?","options":["Playground","Staff room","Swimming pool","Entrance"],"correct":1},{"text":"A ___ tells you when you have each subject.","options":["lesson","timetable","interview","break"],"correct":1},{"text":"Our teacher usually ___ the lesson at 9 o’clock.","options":["start","starts","is starting","starting"],"correct":1},{"text":"Look! The children ___ in the playground.","options":["play","plays","are playing","is playing"],"correct":2},{"text":"I always ___ my teeth before I go to school.","options":["brush","brushes","am brushing","brushing"],"correct":0},{"text":"Be quiet! The teacher ___ the activity now.","options":["explains","explain","is explaining","are explaining"],"correct":2},{"text":"My classmates usually ___ lunch at school.","options":["has","have","are having","is having"],"correct":1},{"text":"We can’t go into the gym. The Year 5 pupils ___ P.E. there at the moment.","options":["has","have","is having","are having"],"correct":3},{"text":"Marta ___ to school at 8:45 every morning.","options":["arrive","arrives","is arriving","arriving"],"correct":1},{"text":"Today we ___ an interview for the school project.","options":["record","records","are recording","is recording"],"correct":2},{"text":"The headteacher normally ___ in the school office.","options":["work","works","is working","working"],"correct":1},{"text":"Listen! The pupils ___ in the classroom.","options":["sing","sings","are singing","is singing"],"correct":2},{"text":"Which sentence describes a routine?","options":["We are having lunch now.","I go to school every day.","She is singing at the moment.","They are playing now."],"correct":1},{"text":"Which sentence describes something happening now?","options":["He usually has breakfast at 8.","We often play in the schoolyard.","They are doing a Learning Station now.","I never go to bed late."],"correct":2},{"text":"Choose the correct sentence.","options":["She usually is doing her homework after school.","She usually does her homework after school.","She usually do her homework after school.","She doing usually her homework after school."],"correct":1},{"text":"Choose the correct sentence.","options":["Look! The teacher talks to the headteacher.","Look! The teacher is talking to the headteacher.","Look! The teacher are talking to the headteacher.","Look! The teacher talking to the headteacher."],"correct":1},{"text":"“Every day” is normally used with the ___.","options":["Present Continuous","Present Simple","infinitive only","past tense"],"correct":1},{"text":"“At the moment” usually tells us to use the ___.","options":["Present Simple","Present Continuous","past tense","future"],"correct":1},{"text":"Which adverb means “sempre”?","options":["never","sometimes","usually","always"],"correct":3},{"text":"Which adverb means “mai”?","options":["often","normally","never","always"],"correct":2},{"text":"Complete: “We ___ have a break at 11 o’clock.”","options":["often","are often","have often","often are"],"correct":0},{"text":"Choose the correct sentence.","options":["She goes usually to the library.","She usually goes to the library.","Usually she go to the library.","She go usually to the library."],"correct":1},{"text":"9:00 is ___.","options":["half past nine","nine o’clock","quarter past nine","quarter to nine"],"correct":1},{"text":"10:30 is ___.","options":["half past ten","half to ten","quarter past ten","ten o’clock"],"correct":0},{"text":"11:15 is ___.","options":["quarter to eleven","half past eleven","quarter past eleven","eleven o’clock"],"correct":2},{"text":"8:45 is ___.","options":["quarter past eight","quarter to nine","half past eight","quarter to eight"],"correct":1},{"text":"Choose the correct sentence.","options":["I am good at swim.","I am good at swimming.","I good at swimming.","I am good swimming."],"correct":1},{"text":"Marc is very good ___ Maths.","options":["in","on","at","to"],"correct":2},{"text":"Complete: “I’m not very good at ___ in front of the class.”","options":["speak","speaks","speaking","am speaking"],"correct":2},{"text":"What does “participate” mean?","options":["To take part in an activity","To arrive at school","To explain a lesson","To go home"],"correct":0},{"text":"What happens after lunch?","options":["It happens earlier than lunch.","It happens later than lunch.","It happens at the same time as lunch.","It never happens at school."],"correct":1},{"text":"Choose the best sequence: “First we have Maths. ___ we have P.E. ___, we go home.”","options":["Never / Often","Then / Finally","Before / Normally","Usually / First"],"correct":1}]}];
+
 let games=JSON.parse(localStorage.getItem(KEY)||'[]');
 let editing=null, current=null, pendingDelete=null, pendingImport=null, decks={A:[],B:[]}, scores={A:0,B:0}, position=0, picked={A:null,B:null}, pair={A:null,B:null}, locked={A:false,B:false}, gameOver=false;
 
@@ -358,7 +395,11 @@ function persist(){localStorage.setItem(KEY,JSON.stringify(games))}
 function esc(s=''){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),1800)}
 function show(id){['library','editor','play'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id))}
-function showLibrary(){show('library');renderGames()}
+function showLibrary(){show('library');renderAllGames()}
+function renderFeaturedGames(){let box=document.getElementById('featuredGames'),search=document.getElementById('gameSearch'),term=search?search.value.trim().toLowerCase():'';let visible=featuredGames.map((g,i)=>({g,i})).filter(({g})=>g.title.toLowerCase().includes(term));box.innerHTML=visible.length?'<div class="grid">'+visible.map(({g,i})=>`<div class="gamecard featured-card"><div class="featured-badge">⭐ FEATURED</div><h3>${esc(g.title)}</h3><div class="meta">${g.questions.length} questions · First to ${g.win}</div><div class="actions"><button class="btn" onclick="startFeaturedGame(${i})">PLAY</button><button class="btn secondary small" onclick="duplicateFeaturedGame(${i})">DUPLICATE TO MY GAMES</button></div></div>`).join('')+'</div>':''}
+function renderAllGames(){renderFeaturedGames();renderGames()}
+function startFeaturedGame(i){current=featuredGames[i];document.getElementById('playTitle').textContent=current.title;show('play');restartGame()}
+function duplicateFeaturedGame(i){let g=JSON.parse(JSON.stringify(featuredGames[i])),base=g.title,n=2,existing=new Set(games.map(x=>x.title.toLowerCase()));while(existing.has(g.title.toLowerCase()))g.title=`${base} (${n++})`;games.push(g);persist();renderAllGames();toast('Featured game copied to My Games!')}
 function renderGames(){
  let box=document.getElementById('games');
  let search=document.getElementById('gameSearch');
@@ -377,7 +418,7 @@ function renderGames(){
 function clearGameSearch(){
  let search=document.getElementById('gameSearch');
  if(search){search.value='';search.focus()}
- renderGames()
+ renderAllGames()
 }
 function blankQ(){return {text:'',options:['','','',''],correct:0}}
 function newGame(){editing=null;document.getElementById('gameTitle').value='';document.getElementById('winDistance').value='3';window.editorQs=[blankQ(),blankQ(),blankQ(),blankQ(),blankQ(),blankQ()];show('editor');renderEditor()}
@@ -566,7 +607,7 @@ function win(side){
 }
 function quitPlay(){document.getElementById('overlay').classList.add('hidden');showLibrary()}
 window.addEventListener('resize',()=>{if(current&&!document.getElementById('play').classList.contains('hidden'))updateRope()});
-renderGames();
+renderAllGames();
 </script>
 </body>
 </html>
